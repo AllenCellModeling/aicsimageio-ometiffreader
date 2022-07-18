@@ -7,23 +7,22 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from urllib.error import URLError
 
 import xarray as xr
-from fsspec.implementations.local import LocalFileSystem
-from fsspec.spec import AbstractFileSystem
-from ome_types import from_xml
-from ome_types.model.ome import OME
-from tifffile.tifffile import TiffFile, TiffFileError, TiffTags
-from xmlschema import XMLSchemaValidationError
-
 from base_image_reader import constants, exceptions, transforms, types
 from base_image_reader.dimensions import (
     DEFAULT_CHUNK_DIMS,
     DEFAULT_DIMENSION_ORDER,
     DimensionNames,
 )
-from tiff_reader import utils as metadata_utils
 from base_image_reader.types import PhysicalPixelSizes
 from base_image_reader.utils import io_utils
+from fsspec.implementations.local import LocalFileSystem
+from fsspec.spec import AbstractFileSystem
+from ome_types import from_xml
+from ome_types.model.ome import OME
+from tiff_reader import utils as metadata_utils
 from tiff_reader.tiff_reader import TiffReader
+from tifffile.tifffile import TiffFile, TiffFileError, TiffTags
+from xmlschema import XMLSchemaValidationError
 
 ###############################################################################
 

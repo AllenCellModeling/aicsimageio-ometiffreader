@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import base_image_reader
 from typing import List
+
+import base_image_reader
 
 ###############################################################################
 
