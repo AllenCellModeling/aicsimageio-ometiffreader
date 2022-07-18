@@ -1,0 +1,29 @@
+aicsimageio\_ometiffreader package
+==================================
+
+Submodules
+----------
+
+aicsimageio\_ometiffreader.ome\_tiff\_reader module
+---------------------------------------------------
+
+.. automodule:: aicsimageio_ometiffreader.ome_tiff_reader
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+aicsimageio\_ometiffreader.reader\_metadata module
+--------------------------------------------------
+
+.. automodule:: aicsimageio_ometiffreader.reader_metadata
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: aicsimageio_ometiffreader
+   :members:
+   :undoc-members:
+   :show-inheritance:
