@@ -1,0 +1,11 @@
+default_context:
+    name: "Eva Maxfield Brown"
+    email: "evamxfieldbrown@gmail.com"
+    github_username: "evamaxfield"
+    project_name: "AICSImageIO OmeTiffReader"
+    project_slug: "aicsimageio-ometiffreader"
+    python_slug: "aicsimageio_ometiffreader"
+    project_short_description: "A basic OmeTiffReader plugin for aicsimageio."
+    pypi_username: "aicspypi"
+    version: "0.0.0"
+    license: "BSD License"
