@@ -204,8 +204,103 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="aicsimageio-ometiffreader-ome-tiff-reader-module">
-<h2>aicsimageio_ometiffreader.ome_tiff_reader module<a class="headerlink" href="#aicsimageio-ometiffreader-ome-tiff-reader-module" title="Permalink to this heading">#</a></h2>
+<section id="module-aicsimageio_ometiffreader.ome_tiff_reader">
+<span id="aicsimageio-ometiffreader-ome-tiff-reader-module"></span><h2>aicsimageio_ometiffreader.ome_tiff_reader module<a class="headerlink" href="#module-aicsimageio_ometiffreader.ome_tiff_reader" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aicsimageio_ometiffreader.ome_tiff_reader.</span></span><span class="sig-name descname"><span class="pre">OmeTiffReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">['Z',</span> <span class="pre">'Y',</span> <span class="pre">'X',</span> <span class="pre">'S']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aicsimageio_ometiffreader/ome_tiff_reader.html#OmeTiffReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TiffReader</span></code></p>
+<p>Wraps the tifffile and ome-types APIs to provide the same aicsimageio Reader
+API but for volumetric OME-TIFF images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>image: types.PathLike</strong></dt><dd><p>Path to image file to construct Reader for.</p>
+</dd>
+<dt><strong>chunk_dims: List[str]</strong></dt><dd><p>Which dimensions to create chunks for.
+Default: DEFAULT_CHUNK_DIMS
+Note: Dimensions.SpatialY, Dimensions.SpatialX, and DimensionNames.Samples,
+will always be added to the list if not present during dask array
+construction.</p>
+</dd>
+<dt><strong>clean_metadata: bool</strong></dt><dd><p>Should the OME XML metadata found in the file be cleaned for known
+AICSImageIO 3.x and earlier created errors.
+Default: True (Clean the metadata for known errors)</p>
+</dd>
+<dt><strong>fs_kwargs: Dict[str, Any]</strong></dt><dd><p>Any specific keyword arguments to pass down to the fsspec created filesystem.
+Default: {}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If the OME metadata in your file isn’t OME schema compilant or does not validate
+this will fail to read your file and raise an exception.</p>
+<p>If the OME metadata in your file doesn’t use the latest OME schema (2016-06),
+this reader will make a request to the referenced remote OME schema to validate.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader.ome_metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ome_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">OME</span></em><a class="headerlink" href="#aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader.ome_metadata" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>metadata: OME</dt><dd><p>The original metadata transformed into the OME specfication.
+This likely isn’t a complete transformation but is guarenteed to
+be a valid transformation.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>NotImplementedError</dt><dd><p>No metadata transformer available.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader.physical_pixel_sizes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">physical_pixel_sizes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PhysicalPixelSizes</span></em><a class="headerlink" href="#aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader.physical_pixel_sizes" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>sizes: PhysicalPixelSizes</dt><dd><p>Using available metadata, the floats representing physical pixel sizes for
+dimensions Z, Y, and X.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>We currently do not handle unit attachment to these values. Please see the file
+metadata for unit information.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader.scenes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scenes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#aicsimageio_ometiffreader.ome_tiff_reader.OmeTiffReader.scenes" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>scenes: Tuple[str, …]</dt><dd><p>A tuple of valid scene ids in the file.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Scene IDs are strings - not a range of integers.</p>
+<p>When iterating over scenes please use:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">image</span><span class="o">.</span><span class="n">scenes</span>
+</pre></div>
+</div>
+<p>and not:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">scenes</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-aicsimageio_ometiffreader.reader_metadata">
 <span id="aicsimageio-ometiffreader-reader-metadata-module"></span><h2>aicsimageio_ometiffreader.reader_metadata module<a class="headerlink" href="#module-aicsimageio_ometiffreader.reader_metadata" title="Permalink to this heading">#</a></h2>
@@ -296,7 +391,7 @@
             <ul>
 <li><a class="reference internal" href="#">aicsimageio_ometiffreader package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#aicsimageio-ometiffreader-ome-tiff-reader-module">aicsimageio_ometiffreader.ome_tiff_reader module</a></li>
+<li><a class="reference internal" href="#module-aicsimageio_ometiffreader.ome_tiff_reader">aicsimageio_ometiffreader.ome_tiff_reader module</a></li>
 <li><a class="reference internal" href="#module-aicsimageio_ometiffreader.reader_metadata">aicsimageio_ometiffreader.reader_metadata module</a></li>
 <li><a class="reference internal" href="#module-aicsimageio_ometiffreader">Module contents</a></li>
 </ul>
